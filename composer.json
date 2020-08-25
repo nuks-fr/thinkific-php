@@ -10,7 +10,6 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.1",
-        "nesbot/carbon": "^2.16",
         "lcobucci/jwt": "^3.3"
     },
     "autoload": {
