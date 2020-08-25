@@ -1,0 +1,19 @@
+{
+    "name": "graphem/thinkific-php",
+    "description": "Simple PHP library for Thinkific API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Graphem Solutions",
+            "email": "info@graphem.ca"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.1",
+        "nesbot/carbon": "^2.16",
+        "lcobucci/jwt": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {"Thinkific\\": "src/Thinkific"}
+    }
+}
