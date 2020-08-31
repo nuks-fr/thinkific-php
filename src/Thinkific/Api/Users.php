@@ -23,28 +23,38 @@ class Users extends AbstractApi{
      * @param  array, int, int
      * @return array
      */
-    protected function sendRequestFilter(array $filter, $page = 1, $limit = 25)
+    protected function sendRequestFilter(array $filter, $page = 1, $limit = 25, $unique = false)
     {
         $baseQuery = [
             'page' => $page, 
             'limit' => $limit
         ];       
         
-        return json_decode(
+        $response = json_decode(
             $this->api->get($this->service,
                 ['query' => array_merge($baseQuery, $filter)]
             ));
+        
+        if(empty($response) || empty($response->items)){
+            return [];
+        }
+
+        if($unique){
+            return $response->items[0];
+        }
+
+        return $response->items;
     }
     
     /**
      * Find by Email
      *
-     * @param  string, int, int
-     * @return array
+     * @param  string
+     * @return Object
      */
-    public function findByEmail($search, $page = 1, $limit = 25)
+    public function findByEmail($search)
     {
-        return $this->sendRequestFilter(['query[email]' => $search], $page, $limit);
+        return $this->sendRequestFilter(['query[email]' => $search], 1, 25, true);
     }
 
     /**
