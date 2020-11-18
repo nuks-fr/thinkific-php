@@ -19,6 +19,7 @@ use Thinkific\Api\Courses;
 use Thinkific\Api\Chapters;
 use Thinkific\Api\Contents;
 use Thinkific\Api\Enrollments;
+use Thinkific\Api\Categories;
 use Thinkific\Adapter\GuzzleHttpAdapter;
 
 class Thinkific
@@ -155,6 +156,11 @@ class Thinkific
     public function sso()
     {
         return new SSO($this->apiKey, $this->subdomain);
+    }
+
+    public function categories(){
+        $this->setAdapterWithApikey();
+        return new Categories($this);
     }
 
 }
