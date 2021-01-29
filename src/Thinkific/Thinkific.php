@@ -20,6 +20,7 @@ use Thinkific\Api\Chapters;
 use Thinkific\Api\Contents;
 use Thinkific\Api\Enrollments;
 use Thinkific\Api\Categories;
+use Thinkific\Api\Products;
 use Thinkific\Adapter\GuzzleHttpAdapter;
 
 class Thinkific
@@ -33,7 +34,7 @@ class Thinkific
      * @var string
      */
     protected $endpoint;
-    
+
     /**
      * @var String
      */
@@ -60,7 +61,7 @@ class Thinkific
         $this->apiKey = $apiKey;
         $this->subdomain = $subdomain;
         $this->endpoint = $endpoint ?: static::ENDPOINT;
-    }    
+    }
 
     /**
      * Initiate the client for API transation
@@ -71,11 +72,11 @@ class Thinkific
      */
     protected function setAdapter(AdapterInterface $adapter = null, $headers = [])
     {
-        if(is_null($adapter)){
-            $this->client = new GuzzleHttpAdapter($headers,$this->endpoint);
+        if (is_null($adapter)) {
+            $this->client = new GuzzleHttpAdapter($headers, $this->endpoint);
             return $this;
         }
-        $this->client = new $adapter($headers,$this->endpoint);
+        $this->client = new $adapter($headers, $this->endpoint);
         return $this;
     }
 
@@ -85,14 +86,15 @@ class Thinkific
      */
     protected function setAdapterWithApikey()
     {
-        $headers = ['headers' =>
-                        [
-                            'X-Auth-API-Key'  => $this->apiKey,
-                            'X-Auth-Subdomain'  => $this->subdomain,
-                        ]
+        $headers = [
+            'headers' =>
+            [
+                'X-Auth-API-Key'  => $this->apiKey,
+                'X-Auth-Subdomain'  => $this->subdomain,
+            ]
 
-                   ];
-        $this->setAdapter($this->adapter,$headers);
+        ];
+        $this->setAdapter($this->adapter, $headers);
     }
 
     /**
@@ -158,9 +160,18 @@ class Thinkific
         return new SSO($this->apiKey, $this->subdomain);
     }
 
-    public function categories(){
+    public function categories()
+    {
         $this->setAdapterWithApikey();
         return new Categories($this);
     }
 
+    /**
+     * @return Products
+     */
+    public function products()
+    {
+        $this->setAdapterWithApikey();
+        return new Products($this);
+    }
 }
