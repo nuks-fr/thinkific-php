@@ -1,18 +1,20 @@
 {
-    "name": "glrn/thinkific-php",
-    "description": "Simple PHP library for Thinkific API",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "GoLearn",
-            "email": "kontakt@golearn.dk"
-        }
-    ],
-    "require": {
-        "guzzlehttp/guzzle": "^7.2",
-        "lcobucci/jwt": "^3.3"
-    },
-    "autoload": {
-        "psr-4": {"Thinkific\\": "src/Thinkific"}
+  "name": "nuks-fr/thinkific-php",
+  "description": "Simple PHP library for Thinkific API",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "GoLearn",
+      "email": "kontakt@golearn.dk"
     }
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "^7.2",
+    "lcobucci/jwt": "^3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Thinkific\\": "src/Thinkific"
+    }
+  }
 }
