@@ -10,8 +10,9 @@
 
 namespace Thinkific\Api;
 
-class Chapters extends AbstractApi{
-  
+class Chapters extends AbstractApi
+{
+
     /**
      * @var string
      */
@@ -20,16 +21,18 @@ class Chapters extends AbstractApi{
     /**
      * Get a business unit
      *
-     * @param  
+     * @param
      * @return array
      */
     public function getContentsById($chapterId, $page = 1, $limit = 25)
     {
         return json_decode(
-            $this->api->get($this->service . '/' . $chapterId . '/contents',
-                ['query' => 
+            $this->api->get(
+                $this->service . '/' . $chapterId . '/contents',
+                [
+                    'query' =>
                     [
-                        'page' => $page, 
+                        'page' => $page,
                         'limit' => $limit
                     ]
                 ]

@@ -15,7 +15,7 @@ use Thinkific\Thinkific;
 
 abstract class AbstractApi
 {
-    
+
     /**
      * @var string
      */
@@ -27,7 +27,7 @@ abstract class AbstractApi
     protected $return;
 
     /**
-     * @var string
+     * @var AdapterInterface
      */
     protected $api;
 
@@ -41,7 +41,7 @@ abstract class AbstractApi
      *
      * @var string
      */
-    
+
 
     public function __construct(Thinkific $client)
     {
@@ -52,32 +52,34 @@ abstract class AbstractApi
     /**
      * Get all elements
      *
-     * @param  
+     * @param
      * @return array
      */
     public function getAll($page = 1, $limit = 25)
     {
         return json_decode(
-            $this->api->get($this->service,
-                ['query' => 
+            $this->api->get(
+                $this->service,
+                [
+                    'query' =>
                     [
-                       'page' => $page, 
-                       'limit' => $limit
+                        'page' => $page,
+                        'limit' => $limit
                     ]
                 ]
-            ));
+            )
+        );
     }
 
 
     /**
      * Get element by id
      *
-     * @param  
+     * @param
      * @return array
      */
     public function getById($id)
     {
         return json_decode($this->api->get($this->service . '/' . $id));
     }
-
 }
